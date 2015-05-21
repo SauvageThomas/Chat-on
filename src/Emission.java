@@ -31,7 +31,6 @@ public class Emission implements Runnable {
 	
 	public void send(String str) {
 		out.println(str);
-		System.out.println("J'envois");
 		fen.setText(str);
 	    out.flush();
 	}

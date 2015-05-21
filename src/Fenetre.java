@@ -261,7 +261,6 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 			emission.send(texteSaisie);
 			zoneTexteMessage.setText("");
 			pane.setEditable(false);
-			System.out.println(zoneTexteMessage.getLineCount());
 			// zoneTexte.setEditable(false);
 		}
 	}
