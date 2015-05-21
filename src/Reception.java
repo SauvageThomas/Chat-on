@@ -21,6 +21,7 @@ public class Reception implements Runnable {
 	        	
 			message = in.readLine();
 			fen.setText(message);
+			System.out.println("reçu");
 			
 		    } catch (IOException e) {
 				

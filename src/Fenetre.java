@@ -46,6 +46,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 	private Emission emission;
 	private ImageIcon apple;
 	private JavaTextPaneWithBackgroundImage pane;
+	private JTextPane contactPane ;
 	private String login ;
 
 	public Fenetre(String titre) {
@@ -70,16 +71,25 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 
 		// zone de contacts
 		zoneContacts = new JPanel();
-		labelContacts = new JLabel("Liste des contacts");
-		labelContacts.setFont(new Font("Comic sans ms", Font.BOLD, 18));
-		labelContacts.setForeground(Color.MAGENTA);
+		//labelContacts = new JLabel("Liste des contacts");
+		//labelContacts.setFont(new Font("Comic sans ms", Font.BOLD, 18));
+		//labelContacts.setForeground(Color.MAGENTA);
 
-		zoneContacts.setPreferredSize(new Dimension(230, 500));
+		//zoneContacts.setPreferredSize(new Dimension(230, 500));
+		contactPane = new JTextPane();
+		contactPane.setPreferredSize(new Dimension(230, 500));
 		// zoneContacts.setBackground(Color.red);
-		zoneContacts.setBorder(BorderFactory.createLineBorder(Color.black, 1));
-
-		zoneContacts.add(labelContacts, BorderLayout.NORTH);
-		this.add(zoneContacts, BorderLayout.WEST);
+		//zoneContacts.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+		contactPane.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+		
+		//zoneContacts.setLayout(new GridLayout());
+		
+		//zoneContacts.add(labelContacts);
+		//contactPane.add(labelContacts);
+		appendToPane(contactPane, "Liste des contacts\n", Color.MAGENTA);
+		
+		//this.add(zoneContacts, BorderLayout.WEST);
+		this.add(contactPane, BorderLayout.WEST);
 		// voir à modifier
 
 		// zone de chat
@@ -187,6 +197,16 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 		pane.setEditable(false);
 	}
 
+	public void setContact(String contact) {
+		
+		//JLabel label = new JLabel(contact);
+		//zoneContacts.add(label);
+		contactPane.setEditable(true);
+		appendToPane(contactPane, contact, Color.BLACK);
+		contactPane.setEditable(false);
+		
+	}
+	
 	public String getLogin() {
 		return this.login;
 	}

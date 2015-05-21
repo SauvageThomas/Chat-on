@@ -22,7 +22,6 @@ public class Client {
 		ip = "localhost";
 		login = "AttiDDOS";
 		
-		
 		System.out.println(ip + " et " + login);
 		
 		Fenetre fen = new Fenetre("Chat'On");
@@ -42,9 +41,13 @@ public class Client {
 			out.println(login);
 			out.flush();
 			
+			String contacts = in.readLine();
+			System.out.println("mes contacts" + contacts);
 
 			fen.setText("Bienvenue sur Chat'On 1.0 !");
 			fen.setText("Je suis " + login);
+			
+			fen.setContact(contacts);
 			
 			Emission emission = new Emission(out, fen) ;
 			
