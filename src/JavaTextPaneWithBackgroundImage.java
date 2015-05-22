@@ -5,7 +5,7 @@ import java.io.*;
 import javax.swing.*;
  
 
-public class JavaTextPaneWithBackgroundImage extends JTextPane{
+public class JavaTextPaneWithBackgroundImage extends CustomJTextPane{
   private final BufferedImage bufferedImage;
   private final TexturePaint texturePaint;
  

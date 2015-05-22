@@ -46,7 +46,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 	private Emission emission;
 	private ImageIcon apple;
 	private JavaTextPaneWithBackgroundImage pane;
-	private JTextPane contactPane ;
+	private CustomJTextPane contactPane ;
 	private String login ;
 
 	public Fenetre(String titre) {
@@ -76,7 +76,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 		//labelContacts.setForeground(Color.MAGENTA);
 
 		//zoneContacts.setPreferredSize(new Dimension(230, 500));
-		contactPane = new JTextPane();
+		contactPane = new CustomJTextPane();
 		contactPane.setPreferredSize(new Dimension(230, 500));
 		// zoneContacts.setBackground(Color.red);
 		//zoneContacts.setBorder(BorderFactory.createLineBorder(Color.black, 1));
@@ -86,7 +86,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 		
 		//zoneContacts.add(labelContacts);
 		//contactPane.add(labelContacts);
-		appendToPane(contactPane, "Liste des contacts\n", Color.MAGENTA);
+		contactPane.appendToPane("Liste des contacts\n", Color.MAGENTA, "Comic sans ms", Font.BOLD, 18);
 		
 		//this.add(zoneContacts, BorderLayout.WEST);
 		this.add(contactPane, BorderLayout.WEST);
@@ -193,7 +193,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 		Message msg = new Message(texte);
 		//msg.parser();
 
-		appendToPane(pane, msg.getMsg() + "\n", msg.getColor());
+		pane.appendToPane(msg.getMsg() + "\n", msg.getColor(), null, 0, 13);
 		pane.setEditable(false);
 	}
 
@@ -202,7 +202,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 		//JLabel label = new JLabel(contact);
 		//zoneContacts.add(label);
 		contactPane.setEditable(true);
-		appendToPane(contactPane, contact, Color.BLACK);
+		contactPane.appendToPane(contact, Color.BLACK, null, 0, 13);
 		contactPane.setEditable(false);
 		
 	}
@@ -300,7 +300,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 		// TODO Auto-generated method stub
 
 	}
-
+	/*
 	private void appendToPane(JTextPane tp, String msg, Color c) {
 		StyleContext sc = StyleContext.getDefaultStyleContext();
 		AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY,
@@ -315,5 +315,5 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 		tp.setCaretPosition(len);
 		tp.setCharacterAttributes(aset, false);
 		tp.replaceSelection(msg);
-	}
+	}*/
 }
