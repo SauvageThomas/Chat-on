@@ -86,17 +86,18 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 		// zoneContacts.setBackground(Color.red);
 		//zoneContacts.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 		contactPane.setBorder(BorderFactory.createLineBorder(Color.black, 1));
-		
 		//zoneContacts.setLayout(new GridLayout());
 		
 		//zoneContacts.add(labelContacts);
 		//contactPane.add(labelContacts);
-		contactPane.appendToPane("Liste des contacts\n", Color.MAGENTA, "Comic sans ms", Font.BOLD, 18);
+		contactPane.appendToPane("      Liste des contacts\n\n", Color.MAGENTA, "Comic sans ms", Font.BOLD, 18);
 		
 		//this.add(zoneContacts, BorderLayout.WEST);
 		this.add(contactPane, BorderLayout.WEST);
-		// voir à modifier
 
+		
+		
+		
 		// zone de chat
 		zoneChat = new JPanel();
 		apple = new ImageIcon();
@@ -121,6 +122,10 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 		zoneChat.add(pane);
 		this.add(zoneChat, BorderLayout.CENTER);
 
+		
+		
+		
+		
 		// Composants de la zone de saisie
 		zoneSaisie = new JPanel();
 		envoyer = new JButton("Send");

@@ -23,7 +23,7 @@ public class Client {
 		//tes
 		
 		ip = "localhost";
-		login = "AttiDDOS";
+		login = "Boite‡Clou";
 		
 		System.out.println(ip + " et " + login);
 		

@@ -22,19 +22,17 @@ public class CustomJTextPane extends JTextPane {
 			font = ("Lucida Console");
 		}
 		
-		this.setFont(new Font(font, style, fontSize));
-
 		System.out.println(font);
 
 		StyleContext sc = StyleContext.getDefaultStyleContext();
 		AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY,
 				StyleConstants.Foreground, c);
 
-		//aset = sc.addAttribute(aset, StyleConstants.FontSize, fontSize);
+		aset = sc.addAttribute(aset, StyleConstants.FontSize, fontSize);
 
-		//aset = sc.addAttribute(aset, StyleConstants.FontFamily, font);
-		//aset = sc.addAttribute(aset, StyleConstants.Alignment,
-				//StyleConstants.ALIGN_JUSTIFIED);
+		aset = sc.addAttribute(aset, StyleConstants.FontFamily, font);
+		aset = sc.addAttribute(aset, StyleConstants.Alignment,
+				StyleConstants.ALIGN_JUSTIFIED);
 
 		int len = this.getDocument().getLength();
 		this.setCaretPosition(len);
