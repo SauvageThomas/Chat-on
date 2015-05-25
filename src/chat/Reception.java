@@ -1,5 +1,8 @@
+package chat;
 import java.io.BufferedReader;
 import java.io.IOException;
+
+import IHM.Fenetre;
 
 
 public class Reception implements Runnable {

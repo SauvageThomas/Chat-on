@@ -1,3 +1,4 @@
+package IHM;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -23,6 +24,10 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
+
+import chat.Emission;
+import chat.Message;
+import chat.SeConnecter;
 
 //A Modifier : -passer un tableau de String en param pour contacts
 public class Fenetre extends JFrame implements ActionListener, KeyListener {
