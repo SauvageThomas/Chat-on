@@ -15,6 +15,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -86,12 +87,11 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 		
 		//zoneContacts.add(labelContacts);
 		//contactPane.add(labelContacts);
-		contactPane.appendToPane("Liste des contacts\n", Color.MAGENTA, "Comic sans ms", Font.BOLD, 18);
+		contactPane.appendToPane("Liste des contacts : \n", Color.MAGENTA, "Comic Sans MS Bold", Font.BOLD, 20);
 		
 		//this.add(zoneContacts, BorderLayout.WEST);
 		this.add(contactPane, BorderLayout.WEST);
-		// voir à modifier
-
+		
 		// zone de chat
 		zoneChat = new JPanel();
 		apple = new ImageIcon();
@@ -145,6 +145,8 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 		zoneSaisie.add(envoyer);
 
 		this.add(zoneSaisie, BorderLayout.SOUTH);
+		
+		
 
 	}
 
@@ -167,6 +169,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 		file.add(quitter);
 
 		this.setJMenuBar(menus);
+		
 	}
 
 	public String getTexte() {

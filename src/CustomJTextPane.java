@@ -4,9 +4,11 @@ import java.util.Enumeration;
 
 import javax.swing.JTextPane;
 import javax.swing.text.AttributeSet;
+import javax.swing.text.MutableAttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
+import javax.swing.text.StyledDocument;
 
 public class CustomJTextPane extends JTextPane {
 
@@ -18,10 +20,11 @@ public class CustomJTextPane extends JTextPane {
 	public void appendToPane(String msg, Color c, String font, int style, int fontSize) {
 
 		if (font == null) {
-			font = ("Lucida Console");
+			font = ("Arial");
 		}
 		
-		this.setFont(new Font(font, style, fontSize));
+		//this.setFont(new Font(font, style, fontSize));
+		//this.setForeground(c);
 
 		System.out.println(font);
 
@@ -29,11 +32,15 @@ public class CustomJTextPane extends JTextPane {
 		AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY,
 				StyleConstants.Foreground, c);
 
-		//aset = sc.addAttribute(aset, StyleConstants.FontSize, fontSize);
+		aset = sc.addAttribute(aset, StyleConstants.FontSize, fontSize);
 
-		//aset = sc.addAttribute(aset, StyleConstants.FontFamily, font);
-		//aset = sc.addAttribute(aset, StyleConstants.Alignment,
-				//StyleConstants.ALIGN_JUSTIFIED);
+		aset = sc.addAttribute(aset, StyleConstants.FontFamily, font);
+		
+		aset = sc.addAttribute(aset, StyleConstants.Alignment,
+				StyleConstants.ALIGN_JUSTIFIED);
+		
+		
+
 
 		int len = this.getDocument().getLength();
 		this.setCaretPosition(len);
