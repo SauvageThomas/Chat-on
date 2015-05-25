@@ -44,6 +44,8 @@ public class chat_serveur implements Runnable {
 				e.printStackTrace();
 			}
 			
+			out.println("Thomas");
+			
 			out.println("\\SYSCODE\\Connecté au serveur.");
 			out.flush() ;
 			while (connected) {

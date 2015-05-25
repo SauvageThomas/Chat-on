@@ -48,11 +48,9 @@ class Accepter_clients implements Runnable {
 
 				// out.println("Wsh, t'es qui ?");
 				// out.flush();
-				System.out.println("ok");
 				String login = in.readLine();
 				System.out.println(login);
 				
-				out.println("Le serveur vous parle") ;
 				// System.out.println(login);
 
 				// out.println("Et ton code c'est oik ?");
