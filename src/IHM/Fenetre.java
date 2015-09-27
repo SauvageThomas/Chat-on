@@ -1,3 +1,4 @@
+package IHM;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -15,7 +16,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -24,6 +24,10 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
+
+import chat.Emission;
+import chat.Message;
+import chat.SeConnecter;
 
 //A Modifier : -passer un tableau de String en param pour contacts
 public class Fenetre extends JFrame implements ActionListener, KeyListener {
@@ -82,15 +86,17 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 		// zoneContacts.setBackground(Color.red);
 		//zoneContacts.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 		contactPane.setBorder(BorderFactory.createLineBorder(Color.black, 1));
-		
 		//zoneContacts.setLayout(new GridLayout());
 		
 		//zoneContacts.add(labelContacts);
 		//contactPane.add(labelContacts);
-		contactPane.appendToPane("Liste des contacts : \n", Color.MAGENTA, "Comic Sans MS Bold", Font.BOLD, 20);
+		contactPane.appendToPane("      Liste des contacts\n\n", Color.MAGENTA, "Comic sans ms", Font.BOLD, 18);
 		
 		//this.add(zoneContacts, BorderLayout.WEST);
 		this.add(contactPane, BorderLayout.WEST);
+
+		
+		
 		
 		// zone de chat
 		zoneChat = new JPanel();
@@ -116,6 +122,10 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 		zoneChat.add(pane);
 		this.add(zoneChat, BorderLayout.CENTER);
 
+		
+		
+		
+		
 		// Composants de la zone de saisie
 		zoneSaisie = new JPanel();
 		envoyer = new JButton("Send");
@@ -145,8 +155,6 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 		zoneSaisie.add(envoyer);
 
 		this.add(zoneSaisie, BorderLayout.SOUTH);
-		
-		
 
 	}
 
@@ -169,7 +177,6 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 		file.add(quitter);
 
 		this.setJMenuBar(menus);
-		
 	}
 
 	public String getTexte() {

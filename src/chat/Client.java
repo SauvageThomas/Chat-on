@@ -1,6 +1,9 @@
+package chat;
 import java.io.*;
 import java.net.*;
 import java.util.Scanner;
+
+import IHM.Fenetre;
 
 public class Client {
 
@@ -20,7 +23,7 @@ public class Client {
 		//tes
 		
 		ip = "localhost";
-		login = "AttiDDOS";
+		login = "Boite‡Clou";
 		
 		System.out.println(ip + " et " + login);
 		
@@ -42,7 +45,7 @@ public class Client {
 			out.flush();
 			
 			String contacts = in.readLine();
-			System.out.println("mes contacts " + contacts);
+			System.out.println("mes contacts" + contacts);
 
 			fen.setText("Bienvenue sur Chat'On 1.0 !");
 			fen.setText("Je suis " + login);

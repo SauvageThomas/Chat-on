@@ -1,3 +1,4 @@
+package chat;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -43,8 +44,6 @@ public class chat_serveur implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			out.println("Thomas");
 			
 			out.println("\\SYSCODE\\Connecté au serveur.");
 			out.flush() ;

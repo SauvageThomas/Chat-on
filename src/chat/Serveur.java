@@ -1,3 +1,4 @@
+package chat;
 import java.io.*;
 import java.net.*;
 import java.util.Scanner;
@@ -39,7 +40,7 @@ class Accepter_clients implements Runnable {
 			while (true) {
 				socket = socketserver.accept(); // Un client se connecte on
 												// l'accepte
-				System.out.println("Un nul veut se connecter");
+				System.out.println("Un zéro veut se connecter");
 
 				PrintWriter out = new PrintWriter(socket.getOutputStream());
 
@@ -48,9 +49,11 @@ class Accepter_clients implements Runnable {
 
 				// out.println("Wsh, t'es qui ?");
 				// out.flush();
+				System.out.println("ok");
 				String login = in.readLine();
 				System.out.println(login);
 				
+				out.println("Le serveur vous parle") ;
 				// System.out.println(login);
 
 				// out.println("Et ton code c'est oik ?");

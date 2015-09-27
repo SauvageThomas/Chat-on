@@ -1,10 +1,11 @@
+package chat;
 
 public class Parser {
 
 	public static String parser(String str) {
 		String codeSystem = "\\SYSCODE\\";
 		String[] tab = str.split("\\\\");
-
+		System.out.println(tab.length);
 		// str = codeSystem + "bla";
 
 		switch (tab.length) {
@@ -25,7 +26,4 @@ public class Parser {
 		return str;
 	}
 
-	public static void main(String[] args) {
-		parser("\\SYSCODE\\bla");
-	}
 }
