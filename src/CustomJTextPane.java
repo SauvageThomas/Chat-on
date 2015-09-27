@@ -22,9 +22,6 @@ public class CustomJTextPane extends JTextPane {
 		if (font == null) {
 			font = ("Arial");
 		}
-		
-		//this.setFont(new Font(font, style, fontSize));
-		//this.setForeground(c);
 
 		System.out.println(font);
 

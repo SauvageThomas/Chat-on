@@ -39,7 +39,7 @@ class Accepter_clients implements Runnable {
 			while (true) {
 				socket = socketserver.accept(); // Un client se connecte on
 												// l'accepte
-				System.out.println("Un zéro veut se connecter");
+				System.out.println("Un nul veut se connecter");
 
 				PrintWriter out = new PrintWriter(socket.getOutputStream());
 
