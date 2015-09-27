@@ -20,9 +20,8 @@ public class Client {
 		login = connect.getLogin() ;
 		ip = connect.getIp() ;
 		
-		//tes
-		
-		ip = "localhost";
+		//CEST LA QUIL FAUT METTRE L IP		
+		ip = "77.146.225.104";
 		login = "Boite‡Clou";
 		
 		System.out.println(ip + " et " + login);
