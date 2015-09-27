@@ -17,12 +17,14 @@ public class Client {
 		SeConnecter connect = new SeConnecter() ;
 		connect.waiting() ;
 		
-		login = connect.getLogin() ;
-		ip = connect.getIp() ;
+		
 		
 		//CEST LA QUIL FAUT METTRE L IP		
-		ip = "77.146.225.104";
-		login = "Boite‡Clou";
+		ip = "192.168.1.96";
+		login = "AttiDDOS";
+		
+		login = connect.getLogin() ;
+		//ip = connect.getIp() ;
 		
 		System.out.println(ip + " et " + login);
 		
@@ -31,7 +33,7 @@ public class Client {
 		
 		try {
 			socket = new Socket(ip, port);
-
+			
 			PrintWriter out = new PrintWriter(socket.getOutputStream());
 
 			BufferedReader in = new BufferedReader(new InputStreamReader(

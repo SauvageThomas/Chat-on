@@ -13,9 +13,9 @@ public class Emission implements Runnable {
 	private String login = null, message = null;
 	private Scanner sc = null;
 	
-	public Emission(PrintWriter out, Fenetre fen) {
+	public Emission(PrintWriter out, Fenetre fen2) {
 		this.out = out;
-		this.fen = fen;
+		this.fen = fen2;
 		
 	}
 
