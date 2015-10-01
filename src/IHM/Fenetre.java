@@ -1,15 +1,10 @@
 package IHM;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.Insets;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -17,13 +12,19 @@ import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.Border;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyleContext;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 import chat.Emission;
 import chat.Message;
@@ -51,8 +52,8 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 	private Emission emission;
 	private ImageIcon apple;
 	private JavaTextPaneWithBackgroundImage pane;
-	private CustomJTextPane contactPane ;
-	private String login ;
+	private CustomJTextPane contactPane;
+	private String login;
 
 	public Fenetre(String titre) {
 		super(titre);
@@ -76,28 +77,27 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 
 		// zone de contacts
 		zoneContacts = new JPanel();
-		//labelContacts = new JLabel("Liste des contacts");
-		//labelContacts.setFont(new Font("Comic sans ms", Font.BOLD, 18));
-		//labelContacts.setForeground(Color.MAGENTA);
+		// labelContacts = new JLabel("Liste des contacts");
+		// labelContacts.setFont(new Font("Comic sans ms", Font.BOLD, 18));
+		// labelContacts.setForeground(Color.MAGENTA);
 
-		//zoneContacts.setPreferredSize(new Dimension(230, 500));
+		// zoneContacts.setPreferredSize(new Dimension(230, 500));
 		contactPane = new CustomJTextPane();
 		contactPane.setPreferredSize(new Dimension(230, 500));
 		// zoneContacts.setBackground(Color.red);
-		//zoneContacts.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+		// zoneContacts.setBorder(BorderFactory.createLineBorder(Color.black,
+		// 1));
 		contactPane.setBorder(BorderFactory.createLineBorder(Color.black, 1));
-		//zoneContacts.setLayout(new GridLayout());
-		
-		//zoneContacts.add(labelContacts);
-		//contactPane.add(labelContacts);
-		contactPane.appendToPane("      Liste des contacts\n\n", Color.MAGENTA, "Comic sans ms", Font.BOLD, 18);
-		
-		//this.add(zoneContacts, BorderLayout.WEST);
-		this.add(contactPane, BorderLayout.WEST);
+		// zoneContacts.setLayout(new GridLayout());
 
-		
-		
-		
+		// zoneContacts.add(labelContacts);
+		// contactPane.add(labelContacts);
+		contactPane.appendToPane("    Utilisateurs connectés\n\n",
+				Color.MAGENTA, "Comic sans ms", Font.BOLD, 18);
+
+		// this.add(zoneContacts, BorderLayout.WEST);
+		this.add(new JScrollPane(contactPane), BorderLayout.WEST);
+
 		// zone de chat
 		zoneChat = new JPanel();
 		apple = new ImageIcon();
@@ -119,13 +119,9 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 
 		// zoneChat.add(zoneTexte);
 		pane.setEditable(false);
-		zoneChat.add(pane);
+		zoneChat.add(new JScrollPane(pane));
 		this.add(zoneChat, BorderLayout.CENTER);
 
-		
-		
-		
-		
 		// Composants de la zone de saisie
 		zoneSaisie = new JPanel();
 		envoyer = new JButton("Send");
@@ -201,22 +197,25 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 		// zoneTexte.setText(zoneTexte.getText() + "\n" + texte);
 
 		Message msg = new Message(texte);
-		//msg.parser();
-
-		pane.appendToPane(msg.getMsg() + "\n", msg.getColor(), null, 0, 13);
-		pane.setEditable(false);
+		// msg.parser();
+		if (msg.isContact()) {
+			this.setContact(msg.getMsg());
+		} else {
+			pane.appendToPane(msg.getMsg() + "\n", msg.getColor(), null, 0, 13);
+			pane.setEditable(false);
+		}
 	}
 
 	public void setContact(String contact) {
-		
-		//JLabel label = new JLabel(contact);
-		//zoneContacts.add(label);
+
+		// JLabel label = new JLabel(contact);
+		// zoneContacts.add(label);
 		contactPane.setEditable(true);
-		contactPane.appendToPane(contact, Color.BLACK, null, 0, 13);
+		contactPane.appendToPane(contact+"\n", Color.BLACK, null, 0, 13);
 		contactPane.setEditable(false);
-		
+
 	}
-	
+
 	public String getLogin() {
 		return this.login;
 	}
@@ -311,19 +310,16 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 
 	}
 	/*
-	private void appendToPane(JTextPane tp, String msg, Color c) {
-		StyleContext sc = StyleContext.getDefaultStyleContext();
-		AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY,
-				StyleConstants.Foreground, c);
-
-		aset = sc.addAttribute(aset, StyleConstants.FontFamily,
-				"Lucida Console");
-		aset = sc.addAttribute(aset, StyleConstants.Alignment,
-				StyleConstants.ALIGN_JUSTIFIED);
-
-		int len = tp.getDocument().getLength();
-		tp.setCaretPosition(len);
-		tp.setCharacterAttributes(aset, false);
-		tp.replaceSelection(msg);
-	}*/
+	 * private void appendToPane(JTextPane tp, String msg, Color c) {
+	 * StyleContext sc = StyleContext.getDefaultStyleContext(); AttributeSet
+	 * aset = sc.addAttribute(SimpleAttributeSet.EMPTY,
+	 * StyleConstants.Foreground, c);
+	 * 
+	 * aset = sc.addAttribute(aset, StyleConstants.FontFamily,
+	 * "Lucida Console"); aset = sc.addAttribute(aset, StyleConstants.Alignment,
+	 * StyleConstants.ALIGN_JUSTIFIED);
+	 * 
+	 * int len = tp.getDocument().getLength(); tp.setCaretPosition(len);
+	 * tp.setCharacterAttributes(aset, false); tp.replaceSelection(msg); }
+	 */
 }

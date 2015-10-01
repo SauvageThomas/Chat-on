@@ -17,6 +17,9 @@ public class Parser {
 			System.out.println(tab[1]);
 			if (tab[1].equals("SYSCODE")) {
 				str = "[SERVEUR] : " + tab[2];
+			} else if (tab[1].equals("SYSCON")) {
+				str = "\\" + tab[2];
+
 			}
 			break;
 		default:

@@ -5,13 +5,17 @@ public class Message {
 	private String msg;
 	private Color color;
 	private final String codeSystem = "\\SYSCODE\\";
+	private boolean isContact = false;
 
 	public Message(String msg) {
 		this.msg = msg;
 		this.color = Color.black;
 		this.parser();
 	}
-
+	
+	public boolean isContact() {
+		return isContact;
+	}
 	public String getMsg() {
 		return msg;
 	}
@@ -36,15 +40,16 @@ public class Message {
 			if (start.equals("SYSCODE")) {
 				msg = "[SERVEUR] : " + tab[2];
 				color = Color.red;
-			}
-			if (start.split(":").length != 1) {
+			} if (start.split(":").length != 1) {
 				tab = start.split(":");
 				if (tab[0].equals("LOGCODE")) {
 					msg = tab[1] + " : " + msg.split("\\\\")[2];
-
 				}
-
+			} if (start.equals("SYSCON")) {
+				msg = tab[2];
+				isContact = true;
 			}
+			
 
 			break;
 		default:
