@@ -2,6 +2,7 @@ package IHM;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
@@ -92,9 +93,9 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 
 		// zoneContacts.add(labelContacts);
 		// contactPane.add(labelContacts);
-		contactPane.appendToPane("    Utilisateurs connectés\n\n",
-				Color.MAGENTA, "Comic sans ms", Font.BOLD, 18);
-
+		contactPane.init();
+		contactPane.appendToPane("\n", Color.MAGENTA, "Comic sans ms",
+				Font.BOLD, 18);
 		// this.add(zoneContacts, BorderLayout.WEST);
 		this.add(new JScrollPane(contactPane), BorderLayout.WEST);
 
@@ -129,11 +130,13 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 
 		zoneSaisie.setPreferredSize(new Dimension(680, 180));
 		// zoneSaisie.setBackground(Color.white);
+
 		zoneTexteMessage.setPreferredSize(new Dimension(800, 150));
 		zoneTexteMessage.setBackground(Color.pink);
 		zoneTexteMessage.setLineWrap(true);
 		zoneTexteMessage.addKeyListener(this);
 		zoneTexteMessage.setMargin(new Insets(5, 5, 5, 5));
+
 		// zoneTexteMessage.setBackground(Color.YELLOW);
 		envoyer.setPreferredSize(new Dimension(100, 170));
 		envoyer.setBackground(new Color(59, 89, 182));
@@ -200,6 +203,8 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 		// msg.parser();
 		if (msg.isContact()) {
 			this.setContact(msg.getMsg());
+		} else if (msg.removeContact()) {
+			this.removeContact(msg.getMsg());
 		} else {
 			pane.appendToPane(msg.getMsg() + "\n", msg.getColor(), null, 0, 13);
 			pane.setEditable(false);
@@ -211,7 +216,32 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 		// JLabel label = new JLabel(contact);
 		// zoneContacts.add(label);
 		contactPane.setEditable(true);
-		contactPane.appendToPane(contact+"\n", Color.BLACK, null, 0, 13);
+		contactPane.appendToPane(contact + "\n", Color.BLACK, null, 0, 13);
+		contactPane.setEditable(false);
+
+	}
+
+	public void removeContact(String contact) {
+
+		System.out.println("Je dois supprimer !");
+		contactPane.setEditable(true);
+		System.out.println(contactPane.getText());
+		
+		String msg = new String();
+		boolean passed = false;
+		for (String cursor : contactPane.getText().split("\n\r")[1].split("\r\n")) {
+
+			System.out.println("Iterate");
+
+			if (cursor.equals(contact) && !passed) {
+				passed = true;
+				continue;
+			}
+
+			System.out.println(cursor + "/" + contact);
+			msg += cursor + "\n";
+		}
+		contactPane.set(msg, Color.BLACK, null, 0, 13);
 		contactPane.setEditable(false);
 
 	}
@@ -270,7 +300,9 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 		if (e.getSource() == envoyer) {
 			// zoneTexte.setEditable(true);
 			pane.setEditable(true);
-			texteSaisie = login + " : " + zoneTexteMessage.getText();
+
+			send(zoneTexteMessage.getText());
+
 			emission.send(texteSaisie);
 			zoneTexteMessage.setText(null);
 			// zoneTexte.setEditable(false);
@@ -280,15 +312,38 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 
 	}
 
+	public void send(String str) {
+
+		if (str.isEmpty()) {
+			str = " ";
+		}
+		str.replaceAll("\n", "");
+		if (str != null && str.charAt(0) == '\\') {
+			this.setText("Désolé, votre message ne peut pas commencer par le symbole \"\\\".");
+		} else {
+			texteSaisie = login + " : " + str;
+		}
+	}
+
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			// zoneTexte.setEditable(true);
 			pane.setEditable(true);
-			texteSaisie = login + " : " + zoneTexteMessage.getText();
+
+			System.out.println("Vous avez tapé <" + zoneTexteMessage.getText()
+					+ ">");
+
+			send(zoneTexteMessage.getText());
+
 			texteSaisie = texteSaisie.replace("\n", "");
 			emission.send(texteSaisie);
-			zoneTexteMessage.setText("");
+
+			zoneTexteMessage.setColumns(0);
+			zoneTexteMessage.setRows(0);
+			e.consume();
+			zoneTexteMessage.setText(null);
+
 			pane.setEditable(false);
 			// zoneTexte.setEditable(false);
 		}

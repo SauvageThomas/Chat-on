@@ -6,6 +6,7 @@ public class Message {
 	private Color color;
 	private final String codeSystem = "\\SYSCODE\\";
 	private boolean isContact = false;
+	private boolean removeContact = false;
 
 	public Message(String msg) {
 		this.msg = msg;
@@ -16,8 +17,13 @@ public class Message {
 	public boolean isContact() {
 		return isContact;
 	}
+	
 	public String getMsg() {
 		return msg;
+	}
+	
+	public boolean removeContact() {
+		return removeContact;
 	}
 
 	public Color getColor() {
@@ -48,6 +54,9 @@ public class Message {
 			} if (start.equals("SYSCON")) {
 				msg = tab[2];
 				isContact = true;
+			} if (start.equals("RSYSCON")) {
+				msg = tab[2];
+				removeContact  = true;
 			}
 			
 

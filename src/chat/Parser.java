@@ -20,6 +20,9 @@ public class Parser {
 			} else if (tab[1].equals("SYSCON")) {
 				str = "\\" + tab[2];
 
+			}else if (tab[1].equals("RSYSCON")) {
+				str = "\\R" + tab[2];
+
 			}
 			break;
 		default:

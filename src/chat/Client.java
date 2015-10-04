@@ -19,7 +19,7 @@ public class Client {
 		connect.waiting();
 
 		// CEST LA QUIL FAUT METTRE L IP
-		ip = "192.168.1.96";
+		ip = "localhost";
 		login = "AttiDDOS";
 
 		login = connect.getLogin();
