@@ -2,7 +2,6 @@ package chat;
 
 import java.io.*;
 import java.net.*;
-import java.util.Scanner;
 
 import IHM.Fenetre;
 
@@ -29,6 +28,7 @@ public class Client {
 
 		Fenetre fen = new Fenetre("Chat'On");
 		fen.setLogin(login);
+		fen.setText("Bienvenue sur Chat'On 1.0 !");
 
 		try {
 			socket = new Socket(ip, port);
@@ -37,37 +37,26 @@ public class Client {
 
 			BufferedReader in = new BufferedReader(new InputStreamReader(
 					socket.getInputStream()));
-			Scanner sc = new Scanner(System.in);
-
-			// fen.setText(in.readLine());
 
 			out.println(login);
 			out.flush();
 
 			String contacts = in.readLine();
 			
-
-			fen.setText("Bienvenue sur Chat'On 1.0 !");
-			fen.setText("Je suis " + login);
-			
 			System.out.println("mes contacts" + contacts);
 			for (String cursor : contacts.split(":")) {
-				fen.setContact(cursor);
+				fen.addContact(cursor);
 			}
 			
-
 			Emission emission = new Emission(out, fen);
 
 			fen.setEmission(emission);
-
-			// Thread t4 = new Thread();
-			// t4.start();
 
 			Thread t3 = new Thread(new Reception(in, fen));
 			t3.start();
 
 		} catch (IOException e) {
-
+			fen.setText("Erreur le serveur n'est pas accessible");
 			e.printStackTrace();
 		}
 	}

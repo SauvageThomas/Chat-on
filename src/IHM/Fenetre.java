@@ -184,25 +184,10 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 
 	public void setText(String texte) {
 		pane.setEditable(true);
-		/*
-		 * JTextField tempField = new JTextField(texte) ;
-		 * //tempField.setBackground(Color.red);
-		 * 
-		 * tempField.
-		 * 
-		 * JPanel tempPanel = new JPanel() ; tempPanel.setBackground(Color.red);
-		 * 
-		 * tempPanel.add(tempField);
-		 * 
-		 * 
-		 * //zoneTexte.setText(texte+"\n");
-		 */
-		// zoneTexte.setText(zoneTexte.getText() + "\n" + texte);
 
 		Message msg = new Message(texte);
-		// msg.parser();
 		if (msg.isContact()) {
-			this.setContact(msg.getMsg());
+			this.addContact(msg.getMsg());
 		} else if (msg.removeContact()) {
 			this.removeContact(msg.getMsg());
 		} else {
@@ -211,10 +196,8 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 		}
 	}
 
-	public void setContact(String contact) {
+	public void addContact(String contact) {
 
-		// JLabel label = new JLabel(contact);
-		// zoneContacts.add(label);
 		contactPane.setEditable(true);
 		contactPane.appendToPane(contact + "\n", Color.BLACK, null, 0, 13);
 		contactPane.setEditable(false);
@@ -223,22 +206,18 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 
 	public void removeContact(String contact) {
 
-		System.out.println("Je dois supprimer !");
 		contactPane.setEditable(true);
-		System.out.println(contactPane.getText());
-		
+
 		String msg = new String();
 		boolean passed = false;
-		for (String cursor : contactPane.getText().split("\n\r")[1].split("\r\n")) {
-
-			System.out.println("Iterate");
+		for (String cursor : contactPane.getText().split("\n\r")[1]
+				.split("\r\n")) {
 
 			if (cursor.equals(contact) && !passed) {
 				passed = true;
 				continue;
 			}
 
-			System.out.println(cursor + "/" + contact);
 			msg += cursor + "\n";
 		}
 		contactPane.set(msg, Color.BLACK, null, 0, 13);
@@ -250,16 +229,8 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 		return this.login;
 	}
 
-	public String getIp() {
-		return this.ip;
-	}
-
 	public void setLogin(String log) {
 		this.login = log;
-	}
-
-	public void setIp(String ip) {
-		this.ip = ip;
 	}
 
 	public void waiting() {
